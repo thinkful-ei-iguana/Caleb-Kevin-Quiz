@@ -17,15 +17,37 @@
       </li>
     </ul>
   </section>
-  <section role="region" class="jungleBox">
+  <section role="region">
     <section class="startQuiz box">
       <h1>How well do you know cooking conversions?</h1>
       <button type="button" class="startButton button">Start</button>
     </section>
-    <section class="questionBox box altBox">
-    </section>
-    <section class="response box altBox"></section>
+    <section class="questionBox box altBox"></section>
+      <div>
+        <form>
+          <fieldset>
+           <legend class="questionText">Question text...</legend>
+            <label class="sizeMe" for="0">
+             <input class="radio" type="radio" id="0" value="1" name="answer" required="">
+             <span>1</span>
+            </label><label class="sizeMe" for="1">
+              <input class="radio" type="radio" id="1" value="2" name="answer" required="">
+              <span>2</span>
+            </label><label class="sizeMe" for="2">
+              <input class="radio" type="radio" id="2" value="3" name="answer" required="">
+              <span>3</span>
+            </label><label class="sizeMe" for="3">
+              <input class="radio" type="radio" id="3" value="4" name="answer" required="">
+              <span>4</span>
+            </label><button type="submit" class="submitButton button"> Submit</button>
+          </fieldset>
+        </form>
+      </div>
     <section class="final box altBox"></section>
+      <div>Results</div>
+      <p>Correct: <span>1</span></p>
+      <p>Incorrect: <span>1</span></p>
+      <button type="button" class="restartButton button">Retake Quiz?</button>
   </section>
 
   <script src="//code.jquery.com/jquery.min.js"></script>
