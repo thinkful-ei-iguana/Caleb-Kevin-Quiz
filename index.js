@@ -3,8 +3,31 @@
 
  //Moves from the initial view to the first question
 function handleStart() {
-
-    console.log('handleStart ran');
+    $('.startButton').on('click', event => {
+        $('.questionBox').children().html(`
+        <form role="questions">
+          <fieldset>
+           <legend class="questionText">Question text...</legend>
+            <label class="sizeMe" for="0">
+             <input class="radio" type="radio" id="0" value="1" name="answer" required="">
+             <span>1</span>
+            </label><label class="sizeMe" for="1">
+              <input class="radio" type="radio" id="1" value="2" name="answer" required="">
+              <span>2</span>
+            </label><label class="sizeMe" for="2">
+              <input class="radio" type="radio" id="2" value="3" name="answer" required="">
+              <span>3</span>
+            </label><label class="sizeMe" for="3">
+              <input class="radio" type="radio" id="3" value="4" name="answer" required="">
+              <span>4</span>
+            </label><button type="submit" class="submitButton button"> Submit</button>
+          </fieldset>
+        </form>`);
+        
+        $('.startQuiz').addClass('hidden');
+        $('.questionBox').children().removeClass('hidden');
+        console.log('handleStart ran');
+    });
 }
 
 //Displays confirmation of correct answer
@@ -33,7 +56,7 @@ function handleRetakeQuiz () {
 
 //Runs all the functions when the page loads
 function handleQuiz () {
-    handleBegin();
+    handleStart();
     handleSubmit();
     handleNextQuestion();
     handleRetakeQuiz();
