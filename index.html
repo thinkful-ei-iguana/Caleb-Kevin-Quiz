@@ -22,9 +22,9 @@
       <h1>How well do you know cooking conversions?</h1>
       <button type="button" class="startButton button">Start</button>
     </section>
-    <section class="questionBox box altBox"></section>
-      <div>
-        <form>
+    <section class="questionBox box"></section>
+      <div class="hidden">
+        <form role="questions">
           <fieldset>
            <legend class="questionText">Question text...</legend>
             <label class="sizeMe" for="0">
@@ -43,11 +43,13 @@
           </fieldset>
         </form>
       </div>
-    <section class="final box altBox"></section>
-      <div>Results</div>
+    <section class="results box">
+      <div class="hidden">
       <p>Correct: <span>1</span></p>
       <p>Incorrect: <span>1</span></p>
       <button type="button" class="restartButton button">Retake Quiz?</button>
+    </div>
+    </section>
   </section>
 
   <script src="//code.jquery.com/jquery.min.js"></script>
