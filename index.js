@@ -1,11 +1,11 @@
 'use strict';
- //REQUIREMENTS GO HERE
+//REQUIREMENTS GO HERE
 
- //Moves from the initial view to the first question
+//Moves from the initial view to the first question
 function handleStart() {
-    $('.startButton').on('click', event => {
-        $('.questionBox').children().html(`
-        <form role="questions">
+  $('.startButton').on('click', event => {
+    $('.questionBox').children().html(`
+        <form class="questions">
           <fieldset>
            <legend class="questionText">Question text...</legend>
             <label class="sizeMe" for="0">
@@ -24,10 +24,10 @@ function handleStart() {
           </fieldset>
         </form>`);
         
-        $('.startQuiz').addClass('hidden');
-        $('.questionBox').children().removeClass('hidden');
-        console.log('handleStart ran');
-    });
+    $('.startQuiz').addClass('hidden');
+    $('.questionBox').children().removeClass('hidden');
+    console.log('handleStart ran');
+  });
 }
 
 //Displays confirmation of correct answer
@@ -36,7 +36,7 @@ function handleStart() {
 //Updates score in header
 function handleSubmit () {
 
-    console.log('handleSubmit ran')
+  console.log('handleSubmit ran');
 }
 
 //Move to the next question
@@ -44,24 +44,32 @@ function handleSubmit () {
 //Moves to the end page if no questions remain
 //Updates question in header
 function handleNextQuestion () {
-
-    console.log('handleNextQuestion ran');
-}
+  $('.questionBox').on('submit', event => {
+  event.preventDefault();
+  //if this is the last question...
+  $('.questionBox').addClass('hidden');
+  $('.results').removeClass('hidden');
+  console.log('handleNextQuestion ran');
+  });
+};
 
 //Returns to question 1 and resets the incriments for question and score
 function handleRetakeQuiz () {
-
-    console.log('handleRetakeQuiz ran')
+  $('.results button').on('click', event => {
+    $('.results').addClass('hidden');
+    $('.questionBox').removeClass('hidden');
+    console.log('handleRetakeQuiz ran');
+  });
 }
 
 //Runs all the functions when the page loads
 function handleQuiz () {
-    handleStart();
-    handleSubmit();
-    handleNextQuestion();
-    handleRetakeQuiz();
+  handleStart();
+  handleSubmit();
+  handleNextQuestion();
+  handleRetakeQuiz();
 
-    console.log('handleQuiz ran')
+  console.log('handleQuiz ran');
 }
 
 $(handleQuiz);
