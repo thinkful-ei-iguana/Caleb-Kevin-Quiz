@@ -2,9 +2,9 @@
  //REQUIREMENTS GO HERE
 
  //Moves from the initial view to the first question
-function handleBegin() {
+function handleStart() {
 
-    console.log('handleBegin ran');
+    console.log('handleStart ran');
 }
 
 //Displays confirmation of correct answer
