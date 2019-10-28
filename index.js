@@ -12,9 +12,7 @@ function handleStart() {
 }
 
 function updateHeader() {
-  const header = $(``
-
-  )
+  //const header = $(``);
 }
 
 function renderQuestion() {
@@ -47,22 +45,64 @@ function renderQuestion() {
 //Updates score in header
 function handleSubmit () {
 
-  console.log('handleSubmit ran');
-}
-
-//Move to the next question
-//OR
-//Moves to the end page if no questions remain
-//Updates question in header
-function handleNextQuestion () {
+  //initiate an event from submit
   $('.questionBox').on('submit', event => {
     event.preventDefault();
-    //if this is the last question...
-    $('.questionBox').addClass('hidden');
-    $('.results').removeClass('hidden');
-    console.log('handleNextQuestion ran');
+  
+    let currentQuest = STORE.questions[STORE.currentQuestion];
+    //grab inputted value
+    let selectedOption = $('input[name=answer]:checked').val();
+    console.log(currentQuest);
+    console.log(selectedOption);
+
+    //determine if correct
+    if (selectedOption === currentQuest.answer) {
+      //Generate and Render Congrats
+        //use jquery to find the selected element
+        //append html to indicate correct
+        //add class for correct (for css)
+      $('.questionBox').find('input[name=answer]:checked').insertAfter('test');
+      //go up to 'label' and then 'insertAfter -> 'p'
+
+      //Increment currentScore
+      STORE.currentScore++; 
+
+      console.log(STORE.currentScore);
+    } else {
+      console.log('WRONG!!');
+      
+      
+      //display correct answer
+      //Generate and Render Congrats
+        //use jquery to find the selected element
+        //append html to indicate incorrect informing of correct answer
+        //add class for incorrect (for css)
+    }
+    //IF right ...
+    //Generate and Render Congrats
+    //Increment currentScore
+
+    //IF wrong ...
+    //display correct answer
+    //Generate and Render Congrats
+
+
+    //update currentQuestion
+
+    //update score
+
+    //isLastQuestion??? 
+    //IF yes ...
+    //$('.questionBox').addClass('hidden');
+    //$('.results').removeClass('hidden');
+    //trigger results
+    //IF no ...
+    
+
+    console.log('handleSubmit ran');
   });
 }
+
 
 //Returns to question 1 and resets the incriments for question and score
 function handleRetakeQuiz () {
@@ -77,7 +117,6 @@ function handleRetakeQuiz () {
 function handleQuiz () {
   handleStart();
   handleSubmit();
-  handleNextQuestion();
   handleRetakeQuiz();
 
   console.log('handleQuiz ran');
