@@ -46,7 +46,7 @@ function renderQuestion() {
 function handleSubmit () {
 
   //initiate an event from submit
-  $('.questionBox').on('submit', event => {
+  $('.questionBox').filter('questions').on('submit', event => {
     event.preventDefault();
   
     let currentQuest = STORE.questions[STORE.currentQuestion];
@@ -70,17 +70,20 @@ function handleSubmit () {
     let nextButton = '<button type="next" class="nextButton button"> Next</button>';
     $('.questionBox').find('.submitButton').addClass('hidden');
     $('.questionBox').find('fieldset').append(nextButton);
+    
     //update currentQuestion
+    STORE.currentQuestion++;
 
     //update score in heading
+
 
     console.log('handleSubmit ran');
   });
 }
 
 function nextQuestion() {
-  $('.nextButton').on('click', (event) => {
-    if (STORE.currentQuestion+1 === STORE.questions.length) {
+  $('.questionBox').filter('.nextButton').on('click', (event) => {
+    if (STORE.currentQuestion + 1 === STORE.questions.length) {
       $('.questionBox').addClass('hidden');
       $('.results').removeClass('hidden');
       let results = `<p>Correct: <span>1</span></p>
@@ -89,6 +92,7 @@ function nextQuestion() {
       $('.results').append(results);  
     } else {
       //change HTML to the next question
+      renderQuestion(); 
     }
     //isLastQuestion??? 
     //IF yes ...
@@ -113,6 +117,7 @@ function handleQuiz() {
   handleStart();
   handleSubmit();
   handleRetakeQuiz();
+  nextQuestion();
 
   console.log('handleQuiz ran');
 }
