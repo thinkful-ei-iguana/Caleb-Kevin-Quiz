@@ -25,6 +25,7 @@ function updateHeader() {
 }
 
 function renderQuestion() {
+  console.log('renderQuestion ran');
   let question = STORE.questions[STORE.currentQuestion];
   //Run update Question and Score which is not written yet
   const questionHtml = `
@@ -56,6 +57,7 @@ function handleSubmit () {
 
   //initiate an event from submit
   $('.questionBox').on('submit','#questions',event => {
+    console.log('handleSubmit ran');
     event.preventDefault();
   
     let currentQuest = STORE.questions[STORE.currentQuestion];
@@ -85,7 +87,9 @@ function handleSubmit () {
 
 function nextQuestion() {
   $('.questionBox').on('click','.nextButton', (event) => {
+    event.preventDefault();
     if (STORE.currentQuestion + 1 === STORE.questions.length) {
+      console.log('nextQuestion ran -> last question');
       $('.questionBox').addClass('hidden');
       $('.results').removeClass('hidden');
       let results = `<p>You got <span>${STORE.currentScore}</span> out of 5 questions correct!</p>
@@ -93,31 +97,34 @@ function nextQuestion() {
       $('.results').html(results);  
     } else {
       //change HTML to the next question
+      console.log('nextQuestion ran -> NOT last question');
       STORE.currentQuestion++;
       renderQuestion(); 
     }
+    updateHeader();
   });
 } 
 
 //Returns to question 1 and resets the increments for question and score
 function handleRetakeQuiz() {
   $('.results').on('click', 'button', event => {
+    console.log('handleRetakeQuiz ran');
     $('.results').addClass('hidden');
     STORE.currentQuestion=0;
     STORE.currentScore=0;
     renderQuestion();
+    updateHeader();
     $('.questionBox').removeClass('hidden');
   });
 }
 
 //Runs all the functions when the page loads
 function handleQuiz() {
+  console.log('handleQuiz ran');
   handleStart();
   handleSubmit();
   handleRetakeQuiz();
   nextQuestion();
-
-  console.log('handleQuiz ran');
 }
 
 $(handleQuiz);
