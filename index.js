@@ -61,6 +61,7 @@ function handleSubmit () {
     let currentQuest = STORE.questions[STORE.currentQuestion];
     //grab inputted value
     let selectedOption = $('input[name=answer]:checked').val();
+    console.log(selectedOption);
 
     //determine if correct
     if (selectedOption === currentQuest.answer) {
