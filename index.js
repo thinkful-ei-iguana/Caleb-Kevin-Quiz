@@ -57,55 +57,50 @@ function handleSubmit () {
 
     //determine if correct
     if (selectedOption === currentQuest.answer) {
-      //Generate and Render Congrats
-        //use jquery to find the selected element
-        //append html to indicate correct
-        //add class for correct (for css)
-      $('.questionBox').find('input[name=answer]:checked').insertAfter('test');
-      //go up to 'label' and then 'insertAfter -> 'p'
-
-      //Increment currentScore
+      $('.questionBox').find('input[name=answer]:checked').parent('label').append('<p>Correct!</p>');
+      $('.questionBox').find('p').addClass('correct');
       STORE.currentScore++; 
 
-      console.log(STORE.currentScore);
     } else {
-      console.log('WRONG!!');
-      
-      
-      //display correct answer
-      //Generate and Render Congrats
-        //use jquery to find the selected element
-        //append html to indicate incorrect informing of correct answer
-        //add class for incorrect (for css)
+      let correction = `<p>Incorrect: the correct answer was ${currentQuest.answer}</p>`;
+      $('.questionBox').find('input[name=answer]:checked').parent('label').append(correction);
+      $('.questionBox').find('p').addClass('incorrect');
     }
-    //IF right ...
-    //Generate and Render Congrats
-    //Increment currentScore
-
-    //IF wrong ...
-    //display correct answer
-    //Generate and Render Congrats
-
-
+    
+    let nextButton = '<button type="next" class="nextButton button"> Next</button>';
+    $('.questionBox').find('.submitButton').addClass('hidden');
+    $('.questionBox').find('fieldset').append(nextButton);
     //update currentQuestion
 
-    //update score
+    //update score in heading
 
+    console.log('handleSubmit ran');
+  });
+}
+
+function nextQuestion() {
+  $('.nextButton').on('click', (event) => {
+    if (STORE.currentQuestion+1 === STORE.questions.length) {
+      $('.questionBox').addClass('hidden');
+      $('.results').removeClass('hidden');
+      let results = `<p>Correct: <span>1</span></p>
+          <p>Incorrect: <span>1</span></p>
+          <button type="button" class="restartButton button">Retake Quiz?</button>`;
+      $('.results').append(results);  
+    } else {
+      //change HTML to the next question
+    }
     //isLastQuestion??? 
     //IF yes ...
     //$('.questionBox').addClass('hidden');
     //$('.results').removeClass('hidden');
     //trigger results
     //IF no ...
-    
-
-    console.log('handleSubmit ran');
   });
-}
-
+} 
 
 //Returns to question 1 and resets the incriments for question and score
-function handleRetakeQuiz () {
+function handleRetakeQuiz() {
   $('.results button').on('click', event => {
     $('.results').addClass('hidden');
     $('.questionBox').removeClass('hidden');
@@ -114,7 +109,7 @@ function handleRetakeQuiz () {
 }
 
 //Runs all the functions when the page loads
-function handleQuiz () {
+function handleQuiz() {
   handleStart();
   handleSubmit();
   handleRetakeQuiz();

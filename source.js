@@ -53,6 +53,6 @@ const STORE = {
       answer: '16'
     },
   ],
-  currentQuestion: 0,
+  currentQuestion: 4,
   currentScore: 0
 };
