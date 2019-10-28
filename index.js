@@ -8,18 +8,27 @@ function handleStart() {
     $('.questionBox').children().removeClass('hidden');
     console.log('handleStart ran');
     renderQuestion();
+    updateHeader();
   });
 }
 
 function updateHeader() {
-  //const header = $(``);
+  console.log('updateHeader ran');
+  const header = $(`<ul aria-live="polite">
+  <li>Question:
+    <span class="questionNumber"></span>${STORE.currentQuestion+1}/5</li>
+  <li>Score:
+    <span class="score">${STORE.currentScore}</span>
+  </li>
+</ul>`);
+  $('header').html(header);
 }
 
 function renderQuestion() {
   let question = STORE.questions[STORE.currentQuestion];
   //Run update Question and Score which is not written yet
   const questionHtml = `
-   <form class="questions">
+   <form class="questions" id="questions">
     <fieldset>
      <legend class="questionText">${question.question}</legend>
       <label class="sizeMe" for="0">
@@ -46,14 +55,12 @@ function renderQuestion() {
 function handleSubmit () {
 
   //initiate an event from submit
-  $('.questionBox').filter('questions').on('submit', event => {
+  $('.questionBox').on('submit','#questions',event => {
     event.preventDefault();
   
     let currentQuest = STORE.questions[STORE.currentQuestion];
     //grab inputted value
     let selectedOption = $('input[name=answer]:checked').val();
-    console.log(currentQuest);
-    console.log(selectedOption);
 
     //determine if correct
     if (selectedOption === currentQuest.answer) {
@@ -70,45 +77,36 @@ function handleSubmit () {
     let nextButton = '<button type="next" class="nextButton button"> Next</button>';
     $('.questionBox').find('.submitButton').addClass('hidden');
     $('.questionBox').find('fieldset').append(nextButton);
-    
-    //update currentQuestion
-    STORE.currentQuestion++;
 
     //update score in heading
-
-
-    console.log('handleSubmit ran');
+    updateHeader();
   });
 }
 
 function nextQuestion() {
-  $('.questionBox').filter('.nextButton').on('click', (event) => {
+  $('.questionBox').on('click','.nextButton', (event) => {
     if (STORE.currentQuestion + 1 === STORE.questions.length) {
       $('.questionBox').addClass('hidden');
       $('.results').removeClass('hidden');
-      let results = `<p>Correct: <span>1</span></p>
-          <p>Incorrect: <span>1</span></p>
+      let results = `<p>You got <span>${STORE.currentScore}</span> out of 5 questions correct!</p>
           <button type="button" class="restartButton button">Retake Quiz?</button>`;
-      $('.results').append(results);  
+      $('.results').html(results);  
     } else {
       //change HTML to the next question
+      STORE.currentQuestion++;
       renderQuestion(); 
     }
-    //isLastQuestion??? 
-    //IF yes ...
-    //$('.questionBox').addClass('hidden');
-    //$('.results').removeClass('hidden');
-    //trigger results
-    //IF no ...
   });
 } 
 
 //Returns to question 1 and resets the incriments for question and score
 function handleRetakeQuiz() {
-  $('.results button').on('click', event => {
+  $('.results').on('click', 'button', event => {
     $('.results').addClass('hidden');
+    STORE.currentQuestion=0;
+    STORE.score=0;
+    renderQuestion();
     $('.questionBox').removeClass('hidden');
-    console.log('handleRetakeQuiz ran');
   });
 }
 
