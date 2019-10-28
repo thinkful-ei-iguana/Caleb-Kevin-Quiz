@@ -60,8 +60,7 @@ function handleSubmit () {
   
     let currentQuest = STORE.questions[STORE.currentQuestion];
     //grab inputted value
-    let selectedOption = $('input[name=answer]:checked').val();
-    console.log(selectedOption);
+    let selectedOption = $('input[name=answer]:checked').siblings('span').text();
 
     //determine if correct
     if (selectedOption === currentQuest.answer) {
@@ -100,12 +99,12 @@ function nextQuestion() {
   });
 } 
 
-//Returns to question 1 and resets the incriments for question and score
+//Returns to question 1 and resets the increments for question and score
 function handleRetakeQuiz() {
   $('.results').on('click', 'button', event => {
     $('.results').addClass('hidden');
     STORE.currentQuestion=0;
-    STORE.score=0;
+    STORE.currentScore=0;
     renderQuestion();
     $('.questionBox').removeClass('hidden');
   });
