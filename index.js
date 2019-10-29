@@ -16,7 +16,7 @@ function updateHeader() {
   console.log('updateHeader ran');
   const header = $(`<ul aria-live="polite">
   <li>Question:
-    <span class="questionNumber"></span>${STORE.currentQuestion+1}/5</li>
+    <span class="questionNumber">${STORE.currentQuestion+1}/5</span></li>
   <li>Score:
     <span class="score">${STORE.currentScore}</span>
   </li>
@@ -32,17 +32,17 @@ function renderQuestion() {
    <form class="questions" id="questions">
     <fieldset>
      <legend class="questionText">${question.question}</legend>
-      <label class="sizeMe" for="0">
-       <input class="radio" type="radio" id="0" value="1" name="answer" required="">
+      <label>
+       <input class="radio" type="radio" name="answer" required="">
        <span>${question.choices[0]}</span>
-      </label><label class="sizeMe" for="1">
-        <input class="radio" type="radio" id="1" value="2" name="answer" required="">
+      </label><label>
+        <input class="radio" type="radio" name="answer" required="">
         <span>${question.choices[1]}</span>
-      </label><label class="sizeMe" for="2">
-        <input class="radio" type="radio" id="2" value="3" name="answer" required="">
+      </label><label>
+        <input class="radio" type="radio" name="answer" required="">
         <span>${question.choices[2]}</span>
-      </label><label class="sizeMe" for="3">
-        <input class="radio" type="radio" id="3" value="4" name="answer" required="">
+      </label><label>
+        <input class="radio" type="radio" name="answer" required="">
         <span>${question.choices[3]}</span>
       </label><button type="submit" class="submitButton button"> Submit</button>
     </fieldset>
