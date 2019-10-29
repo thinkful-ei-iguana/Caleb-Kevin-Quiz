@@ -29,24 +29,24 @@ function renderQuestion() {
   let question = STORE.questions[STORE.currentQuestion];
   //Run update Question and Score which is not written yet
   const questionHtml = `
-   <form class="questions" id="questions">
-    <fieldset>
-     <legend class="questionText">${question.question}</legend>
-      <label>
-       <input class="radio" type="radio" name="answer" required="">
-       <span>${question.choices[0]}</span>
-      </label><label>
-        <input class="radio" type="radio" name="answer" required="">
-        <span>${question.choices[1]}</span>
-      </label><label>
-        <input class="radio" type="radio" name="answer" required="">
-        <span>${question.choices[2]}</span>
-      </label><label>
-        <input class="radio" type="radio" name="answer" required="">
-        <span>${question.choices[3]}</span>
-      </label><button type="submit" class="submitButton button"> Submit</button>
-    </fieldset>
-  </form>`;
+  <form class="questions" id="questions">
+   <fieldset>
+    <legend class="questionText">${question.question}</legend>
+     <label class="sizeMe" for="0">
+      <input class="radio" type="radio" id="0" value="1" name="answer" required="" aria-labelledby="0">
+      <span>${question.choices[0]}</span>
+     </label><label class="sizeMe" for="1">
+       <input class="radio" type="radio" id="1" value="2" name="answer" required="" aria-labelledby="1">
+       <span>${question.choices[1]}</span>
+     </label><label class="sizeMe" for="2">
+       <input class="radio" type="radio" id="2" value="3" name="answer" required="" aria-labelledby="2">
+       <span>${question.choices[2]}</span>
+     </label><label class="sizeMe" for="3">
+       <input class="radio" type="radio" id="3" value="4" name="answer" required="" aria-labelledby="3">
+       <span>${question.choices[3]}</span>
+     </label><button type="submit" class="submitButton button"> Submit</button>
+   </fieldset>
+ </form>`
   $('.questionBox').children().html(questionHtml);
 }
 //Displays confirmation of correct answer
