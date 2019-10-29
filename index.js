@@ -91,6 +91,7 @@ function nextQuestion() {
     if (STORE.currentQuestion + 1 === STORE.questions.length) {
       console.log('nextQuestion ran -> last question');
       $('.questionBox').addClass('hidden');
+      $('body').addClass('finished');
       $('.results').removeClass('hidden');
       let results = `<p>You got <span>${STORE.currentScore}</span> out of 5 questions correct!</p>
           <button type="button" class="restartButton button">Retake Quiz?</button>`;
@@ -108,12 +109,12 @@ function nextQuestion() {
 //Returns to question 1 and resets the increments for question and score
 function handleRetakeQuiz() {
   $('.results').on('click', 'button', event => {
-    console.log('handleRetakeQuiz ran');
     $('.results').addClass('hidden');
     STORE.currentQuestion=0;
     STORE.currentScore=0;
     renderQuestion();
     updateHeader();
+    $('body').removeClass('finished');
     $('.questionBox').removeClass('hidden');
   });
 }
