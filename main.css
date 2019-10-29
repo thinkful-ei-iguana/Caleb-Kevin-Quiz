@@ -214,7 +214,7 @@
     border: 2px solid black;
   }
 
-  .button:hover {
+  .button:hover, .button:focus {
     background-color: #4CAF50;
     color: white;
     border-radius: 4px;
