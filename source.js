@@ -13,7 +13,7 @@ const STORE = {
       answer: '4'
     },
     {
-      question:  'How many teaspoons are in a tablespoon',
+      question:  'How many teaspoons are in a tablespoon?',
       choices: [
         '1',
         '2',
